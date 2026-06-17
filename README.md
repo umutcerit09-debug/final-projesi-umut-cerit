@@ -53,4 +53,4 @@ Random Forest modeli eğitim verisini ezberleme eğilimi (overfitting) göstermi
 Bu projenin geliştirilme sürecinde kod hatalarının ayıklanması, kütüphane versiyon uyuşmazlıklarının çözümü ve Markdown dokümantasyonlarının taslağının oluşturulması aşamalarında Google Gemini yapay zeka asistanından destek alınmıştır.
 
 ## 13. Proje Tanıtım Videosu
-[Proje Tanıtım Videosunu İzlemek İçin Tıklayın]()
+[Proje Tanıtım Videosunu İzlemek İçin Tıklayın](https://www.youtube.com/watch?v=409tBIppRTc)
