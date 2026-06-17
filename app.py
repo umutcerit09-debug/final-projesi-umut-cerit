@@ -55,3 +55,32 @@ print(f"Lojistik Regresyon Test Doğruluğu: %{log_acc * 100:.2f}")
 print(f"Random Forest Test Doğruluğu: %{rf_acc * 100:.2f}")
 print(f"Random Forest Eğitim Doğruluğu: %{rf_train_acc * 100:.2f} (Overfitting kontrolü)")
 print("-" * 30)
+
+import shap
+import matplotlib
+matplotlib.use('Agg')  # Terminalde arayüz hatası vermemesi için grafik motorunu arka plana alıyoruz
+import matplotlib.pyplot as plt
+
+# 5. SHAP (Açıklanabilir Yapay Zeka) Modülü
+print("SHAP analiz değerleri hesaplanıyor (Bu işlem 10-15 saniye sürebilir)...")
+
+# Random Forest modeli için açıklayıcı oluşturuyoruz
+explainer = shap.TreeExplainer(rf_model)
+# Hesaplamayı hızlandırmak için test verisinden 100 örnek seçip analiz ediyoruz
+X_test_sample = X_test.head(100)
+shap_values = explainer.shap_values(X_test_sample)
+
+print("Grafik oluşturuluyor ve kaydediliyor...")
+plt.figure(figsize=(10, 6))
+
+# Sürüm farklılıklarından dolayı çökmemesi için en güvenli grafik çizimini yapıyoruz
+shap.summary_plot(shap_values, X_test_sample, show=False)
+plt.title("SHAP Özet Analizi (Müşteri Terkini Etkileyen Faktörler)", fontsize=14)
+
+# Grafiği proje klasörüne kaydet
+plt.savefig('shap_analizi.png', bbox_inches='tight', dpi=150)
+plt.close()
+
+print("-" * 30)
+print("SHAP analizi başarıyla tamamlandı ve 'shap_analizi.png' olarak klasöre kaydedildi!")
+print("-" * 30)
